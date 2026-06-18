@@ -13,7 +13,7 @@ class BaseService
             return null;
         }
 
-        return asset('storage/' . ltrim($path, '/'));
+        return asset('storage/app/public/' . ltrim($path, '/'));
     }
 
     protected function uploadFile(
