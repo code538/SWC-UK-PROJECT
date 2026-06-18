@@ -6,6 +6,25 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\Admin\MailSettingController;
 use App\Http\Controllers\API\Admin\SiteSettingController;
 use App\Http\Controllers\API\Admin\SeoSettingController;
+use App\Http\Controllers\API\Admin\BannerController;
+use App\Http\Controllers\API\Admin\TeamFirstSectionController;
+use App\Http\Controllers\API\Admin\TeamSecondSectionController;
+use App\Http\Controllers\API\Admin\TeamMemberController;
+use App\Http\Controllers\API\Admin\SrFirstSectionController;
+use App\Http\Controllers\API\Admin\SrSecondSectionController;
+use App\Http\Controllers\API\Admin\SrThirdSectionController;
+use App\Http\Controllers\API\Admin\SrForthSectionController;
+use App\Http\Controllers\API\Admin\SrFifthSectionController;
+use App\Http\Controllers\API\Admin\SrSixthSectionController;
+use App\Http\Controllers\API\Admin\SrSeventhSectionController;
+use App\Http\Controllers\API\Admin\BlogFirstSectionController;
+use App\Http\Controllers\API\Admin\BlogSecondSectionController;
+use App\Http\Controllers\API\Admin\AboutFirstSectionController;
+use App\Http\Controllers\API\Admin\AboutSecondSectionController;
+use App\Http\Controllers\API\Admin\AboutThirdSectionController;
+use App\Http\Controllers\API\Admin\AboutForthSectionController;
+use App\Http\Controllers\API\Public\AboutController;
+
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -30,10 +49,94 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/site-settings', [SiteSettingController::class, 'details']);
 
         // SEO Settings
+        Route::get('/seo-settings/list', [SeoSettingController::class, 'list']);
         Route::post('/seo-settings/save', [SeoSettingController::class, 'save']);
         Route::get('/seo-settings/{page}', [SeoSettingController::class, 'details']);
+
+        // Banner
+        Route::post('/banner/save', [BannerController::class, 'save']);
+        Route::get('/banner/{page}',[BannerController::class, 'details']);
+        Route::get('/banner-list',[BannerController::class, 'list']);
+
+        // Team First Section
+        Route::post('/team-first-section/save',[TeamFirstSectionController::class, 'save']);
+        Route::get('/team-first-section',[TeamFirstSectionController::class, 'details']);
+
+        // Team Second Section
+        Route::post('/team-second-section/save', [TeamSecondSectionController::class, 'save']);
+        Route::get('/team-second-section',[TeamSecondSectionController::class, 'details']);
+
+        // Team Members
+        Route::post('/team-member/save', [TeamMemberController::class, 'save']);
+        Route::get('/team-member/{id}', [TeamMemberController::class, 'details']);
+        Route::get('/team-member-list',[TeamMemberController::class, 'list']);
+
+        // Corporate Social Responsibility (SR) First Section
+        Route::post('/sr-first-section/save', [SrFirstSectionController::class, 'save']);
+        Route::get('/sr-first-section', [SrFirstSectionController::class, 'details']);
+        // Corporate Social Responsibility (SR) Second Section
+        Route::post('/sr-second-section/save', [SrSecondSectionController::class, 'save']);
+        Route::get('/sr-second-section', [SrSecondSectionController::class, 'details']);
+        // Corporate Social Responsibility (SR) Third Section
+        Route::post('/sr-third-section/save', [SrThirdSectionController::class, 'save']);
+        Route::get('/sr-third-section', [SrThirdSectionController::class, 'details']);
+        Route::get('/sr-third-section/{id}', [SrThirdSectionController::class, 'edit']);
+        // Corporate Social Responsibility (SR) Forth Section
+        Route::post('/sr-forth-section/save', [SrForthSectionController::class, 'save']);
+        Route::get('/sr-forth-section/{id}', [SrForthSectionController::class, 'details']);
+        Route::get('/sr-forth-section-list', [SrForthSectionController::class, 'list']);
+        Route::delete('/sr-forth-section/{id}', [SrForthSectionController::class, 'delete']);
+        // Corporate Social Responsibility (SR) Fifth Section
+        Route::post('/sr-fifth-section/save', [SrFifthSectionController::class, 'save']);
+        Route::get('/sr-fifth-section/{id}', [SrFifthSectionController::class, 'details']);
+        Route::get('/sr-fifth-section-list', [SrFifthSectionController::class, 'list']);
+        Route::delete('/sr-fifth-section/{id}', [SrFifthSectionController::class, 'delete']);
+        // Corporate Social Responsibility (SR) Sixth Section
+        Route::post('/sr-sixth-section/save', [SrSixthSectionController::class, 'save']);
+        Route::get('/sr-sixth-section/{id}', [SrSixthSectionController::class, 'details']);
+        Route::get('/sr-sixth-section-list', [SrSixthSectionController::class, 'list']);
+        Route::delete('/sr-sixth-section/{id}', [SrSixthSectionController::class, 'delete']);
+        //Corporate Social Responsibility (SR) Seventh Section
+        Route::post('/sr-seventh-section/save', [SrSeventhSectionController::class, 'save']);
+        Route::get('/sr-seventh-section', [SrSeventhSectionController::class, 'details']);
+
+        // Blog Section
+        Route::post('/blog-first-section/save', [BlogFirstSectionController::class, 'save']);
+        Route::get('/blog-first-section', [BlogFirstSectionController::class, 'details']);
+        // blog second section
+        Route::post('/blog/save', [BlogSecondSectionController::class, 'save']);
+        Route::get('/blog/{id}', [BlogSecondSectionController::class, 'details']);
+        Route::get('/blog-list', [BlogSecondSectionController::class, 'list']);
+        Route::delete('/blog/{id}', [BlogSecondSectionController::class, 'delete']);
+
+        // About first section
+        Route::post('/about-first-section/save', [AboutFirstSectionController::class,'save']);
+        Route::get('/about-first-section', [AboutFirstSectionController::class,'details']);
+        // About second section
+        Route::post('/about-second-section/save', [AboutSecondSectionController::class, 'save']);
+        Route::get('/about-second-section', [AboutSecondSectionController::class, 'details']);
+        // About third section
+        Route::post('/about-third-section/save', [AboutThirdSectionController::class,'save']);
+        Route::get('/about-third-section', [AboutThirdSectionController::class,'details']);
+        // About forth section
+        Route::post('/about-forth-section/save', [AboutForthSectionController::class,'save']);
+        Route::get('/about-forth-section', [AboutForthSectionController::class,'details']);
+
     });
 
-    
-
 });
+
+// Public routes for fetching details
+Route::get('/team', [TeamFirstSectionController::class, 'pageDetails']);
+Route::get('/team-member/{slug}', [TeamMemberController::class, 'detailsBySlug']);
+
+// blog 
+Route::get('/blogs', [BlogSecondSectionController::class, 'allBlogs']);
+Route::get('/blog/{slug}', [BlogSecondSectionController::class, 'detailsBySlug']);
+// about
+Route::get('/about', [AboutController::class,'details']);
+
+
+
+
+

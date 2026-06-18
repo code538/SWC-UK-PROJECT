@@ -63,4 +63,6 @@ class SiteSettingController extends Controller
             'Site settings fetched successfully'
         );
     }
+
+   
 }

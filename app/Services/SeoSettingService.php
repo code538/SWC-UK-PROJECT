@@ -51,4 +51,15 @@ class SeoSettingService extends BaseService
 
         return $seo;
     }
+
+    public function list()
+    {
+        $seo = SeoSetting::all();
+
+        foreach ($seo as $item) {
+            $item->og_image = $this->fileUrl($item->og_image);
+        }
+
+        return $seo;
+    }
 }

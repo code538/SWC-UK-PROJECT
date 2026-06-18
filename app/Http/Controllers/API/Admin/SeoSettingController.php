@@ -21,6 +21,7 @@ class SeoSettingController extends Controller
 
     public function save(Request $request)
     {
+        //dd('okk');
         $request->validate([
             'page_name' => 'required|string|max:255',
 
@@ -49,6 +50,25 @@ class SeoSettingController extends Controller
     public function details($page)
     {
         $seoSetting = $this->seoSettingService->details($page);
+
+        if (!$seoSetting) {
+            return $this->error(
+                'SEO settings not found',
+                [],
+                404
+            );
+        }
+
+        return $this->success(
+            $seoSetting,
+            'SEO settings fetched successfully'
+        );
+    }
+
+    public function list()
+    {
+        //dd('okk');
+        $seoSetting = $this->seoSettingService->list();
 
         if (!$seoSetting) {
             return $this->error(

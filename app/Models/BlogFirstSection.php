@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BlogFirstSection extends Model
+{
+    protected $fillable = [
+        'batch',
+
+        'title',
+        'highlighted_title',
+
+        'description',
+
+        'title_meta',
+        'desc_meta',
+
+        'status',
+    ];
+}
