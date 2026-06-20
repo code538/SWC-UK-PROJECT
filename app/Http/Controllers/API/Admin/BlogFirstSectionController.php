@@ -33,6 +33,10 @@ class BlogFirstSectionController extends Controller
             'title_meta' => 'nullable|string|max:255',
             'desc_meta' => 'nullable|string',
 
+            'web_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'mobile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+            'image_alt' => 'nullable|string|max:255',
+
             'status' => 'nullable|boolean',
         ]);
 

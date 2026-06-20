@@ -25,6 +25,13 @@ use App\Http\Controllers\API\Admin\AboutThirdSectionController;
 use App\Http\Controllers\API\Admin\AboutForthSectionController;
 use App\Http\Controllers\API\Public\AboutController;
 
+use App\Http\Controllers\API\Admin\ServiceCategoryController;
+use App\Http\Controllers\API\Admin\ServiceSubCategoryController;
+use App\Http\Controllers\API\Admin\ServiceSubCategorySectionController;
+use App\Http\Controllers\API\Public\ServiceController;
+use App\Http\Controllers\API\Admin\SvFirstSectionController;
+
+
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -122,6 +129,30 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/about-forth-section/save', [AboutForthSectionController::class,'save']);
         Route::get('/about-forth-section', [AboutForthSectionController::class,'details']);
 
+        //Service Section
+
+        //Service Category
+        Route::post('/service-category/save', [ServiceCategoryController::class,'save']);
+        Route::get('/service-category/list', [ServiceCategoryController::class,'list']);
+        Route::get('/service-category/{id}', [ServiceCategoryController::class,'details']);
+        Route::delete('/service-category/{id}', [ServiceCategoryController::class,'delete']);
+        //Service Sub Category
+        Route::post('/service-sub-category/save', [ServiceSubCategoryController::class,'save']);
+        Route::get('/service-sub-category/list', [ServiceSubCategoryController::class,'list']);
+        Route::get('/service-sub-category/{id}', [ServiceSubCategoryController::class,'details']);
+        Route::delete('/service-sub-category/{id}', [ServiceSubCategoryController::class,'delete']);
+        //Service Sub Category Section
+        Route::post('/service-sub-category-section/save', [ServiceSubCategorySectionController::class,'save']);
+        Route::get('/service-sub-category-section/list', [ServiceSubCategorySectionController::class,'list']);
+        Route::get('/service-sub-category-section/{id}', [ServiceSubCategorySectionController::class,'details']);
+        Route::delete('/service-sub-category-section/{id}', [ServiceSubCategorySectionController::class,'delete']);
+        // Service Details Page First Section
+        Route::post('/sv-first-section/save', [SvFirstSectionController::class,'save']);
+        Route::get('/sv-first-section/list', [SvFirstSectionController::class,'list']);
+        Route::get('/sv-first-section/{id}', [SvFirstSectionController::class,'details']);
+        Route::delete('/sv-first-section/{id}', [SvFirstSectionController::class,'delete']);
+
+
     });
 
 });
@@ -135,6 +166,10 @@ Route::get('/blogs', [BlogSecondSectionController::class, 'allBlogs']);
 Route::get('/blog/{slug}', [BlogSecondSectionController::class, 'detailsBySlug']);
 // about
 Route::get('/about', [AboutController::class,'details']);
+
+// service
+Route::get('/services', [ServiceController::class,'services']);
+Route::get('/service/{slug}', [ServiceController::class,'details']);
 
 
 

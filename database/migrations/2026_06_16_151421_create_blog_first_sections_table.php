@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('title_meta')->nullable();
             $table->text('desc_meta')->nullable();
 
+            $table->string('web_image')->nullable();
+            $table->string('mobile_image')->nullable();
+            $table->string('image_alt')->nullable();
+
             $table->boolean('status')
                   ->default(1)
                   ->comment('1=Active,0=Inactive');

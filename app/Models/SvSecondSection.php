@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BlogFirstSection extends Model
+class SvSecondSection extends Model
 {
     protected $fillable = [
+
         'batch',
 
         'title',
@@ -17,10 +18,18 @@ class BlogFirstSection extends Model
         'title_meta',
         'desc_meta',
 
-        'web_image',
-        'mobile_image',
-        'image_alt',
+        'feature',
 
-        'status',
+        'tag_line',
+
+        'status'
+
+    ];
+
+
+    protected $casts = [
+
+        'feature'=>'array'
+
     ];
 }
