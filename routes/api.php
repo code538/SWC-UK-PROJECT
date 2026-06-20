@@ -30,6 +30,7 @@ use App\Http\Controllers\API\Admin\ServiceSubCategoryController;
 use App\Http\Controllers\API\Admin\ServiceSubCategorySectionController;
 use App\Http\Controllers\API\Public\ServiceController;
 use App\Http\Controllers\API\Admin\SvFirstSectionController;
+use App\Http\Controllers\API\Admin\SvSecondSectionController;
 
 
 
@@ -151,6 +152,30 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/sv-first-section/list', [SvFirstSectionController::class,'list']);
         Route::get('/sv-first-section/{id}', [SvFirstSectionController::class,'details']);
         Route::delete('/sv-first-section/{id}', [SvFirstSectionController::class,'delete']);
+        // Service Details Page Second Section
+        Route::post('/sv-second-section/save', [SvSecondSectionController::class,'save']);
+        Route::get('/sv-second-section/list', [SvSecondSectionController::class,'list']);
+
+
+
+        Route::get(
+
+        '/sv-second-section/{id}',
+
+        [SvSecondSectionController::class,'details']
+
+        );
+
+
+
+        Route::delete(
+
+        '/sv-second-section/{id}',
+
+        [SvSecondSectionController::class,'delete']
+
+        );
+
 
 
     });

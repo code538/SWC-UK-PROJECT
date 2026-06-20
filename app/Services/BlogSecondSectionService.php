@@ -60,6 +60,19 @@ class BlogSecondSectionService extends BaseService
             $data['slug'] = $count > 0
                 ? $slug . '-' . ($count + 1)
                 : $slug;
+        } else {
+
+             $slug = Str::slug($request->title);
+
+            $count = BlogSecondSection::where(
+                'slug',
+                'LIKE',
+                $slug . '%'
+            )->count();
+
+            $data['slug'] = $count > 0
+                ? $slug . '-' . ($count + 1)
+                : $slug;
         }
 
         return BlogSecondSection::updateOrCreate(
