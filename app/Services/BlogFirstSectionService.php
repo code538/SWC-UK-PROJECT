@@ -65,6 +65,19 @@ class BlogFirstSectionService extends BaseService
 
     public function details()
     {
-        return BlogFirstSection::first();
+        $blog = BlogFirstSection::first();
+
+        if ($blog) {
+
+            $blog->web_image = $this->fileUrl(
+                $blog->web_image
+            );
+
+            $blog->mobile_image = $this->fileUrl(
+                $blog->mobile_image
+            );
+        }
+
+        return $blog;
     }
 }
