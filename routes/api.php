@@ -31,7 +31,10 @@ use App\Http\Controllers\API\Admin\ServiceSubCategorySectionController;
 use App\Http\Controllers\API\Public\ServiceController;
 use App\Http\Controllers\API\Admin\SvFirstSectionController;
 use App\Http\Controllers\API\Admin\SvSecondSectionController;
-
+use App\Http\Controllers\API\Admin\SvThirdSectionController;
+use App\Http\Controllers\API\Admin\SvForthSectionController;
+use App\Http\Controllers\API\Admin\SvFifthSectionController;
+use App\Http\Controllers\API\Admin\SvSixthSectionController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -155,26 +158,30 @@ Route::middleware('auth:sanctum')->group(function () {
         // Service Details Page Second Section
         Route::post('/sv-second-section/save', [SvSecondSectionController::class,'save']);
         Route::get('/sv-second-section/list', [SvSecondSectionController::class,'list']);
+        Route::get('/sv-second-section/{id}', [SvSecondSectionController::class,'details']);
+        Route::delete('/sv-second-section/{id}', [SvSecondSectionController::class,'delete']);
+        // Service Details Page Third Section
+        Route::post('/sv-third-section/save', [SvThirdSectionController::class,'save']);
+        Route::get('/sv-third-section/list', [SvThirdSectionController::class,'list']);
+        Route::get('/sv-third-section/{id}', [SvThirdSectionController::class,'details']);
+        Route::delete('/sv-third-section/{id}', [SvThirdSectionController::class,'delete']);
+        // Service Details Page Forth Section
+        Route::post('/sv-forth-section/save', [SvForthSectionController::class,'save']);
+        Route::get('/sv-forth-section/list', [SvForthSectionController::class,'list']);
+        Route::get('/sv-forth-section/{id}', [SvForthSectionController::class,'details']);
+        Route::delete('/sv-forth-section/{id}', [SvForthSectionController::class,'delete']);
+        // Service Details Page Fifth Section
+        Route::post('/sv-fifth-section/save', [SvFifthSectionController::class,'save']);
+        Route::get('/sv-fifth-section/list', [SvFifthSectionController::class,'list']);
+        Route::get('/sv-fifth-section/{id}', [SvFifthSectionController::class,'details']);
+        Route::delete('/sv-fifth-section/{id}', [SvFifthSectionController::class,'delete']);
+        // Service Details Page Sixth Section
+        Route::post('/sv-sixth-section/save', [SvSixthSectionController::class,'save']);
+        Route::get('/sv-sixth-section/list', [SvSixthSectionController::class,'list']);
+        Route::get('/sv-sixth-section/{id}', [SvSixthSectionController::class,'details']);
+        Route::delete('/sv-sixth-section/{id}', [SvSixthSectionController::class,'delete']);
 
 
-
-        Route::get(
-
-        '/sv-second-section/{id}',
-
-        [SvSecondSectionController::class,'details']
-
-        );
-
-
-
-        Route::delete(
-
-        '/sv-second-section/{id}',
-
-        [SvSecondSectionController::class,'delete']
-
-        );
 
 
 
