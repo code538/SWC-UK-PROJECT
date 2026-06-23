@@ -39,6 +39,8 @@ class ServiceCategoryController extends Controller
 
             'name'=>'required|string|max:255',
 
+            'description' => 'string|nullable',
+
             'slug'=>'nullable|string|max:255',
 
             'order'=>'nullable|integer',

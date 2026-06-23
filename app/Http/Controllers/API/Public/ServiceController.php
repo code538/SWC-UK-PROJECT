@@ -5,6 +5,10 @@ namespace App\Http\Controllers\API\Public;
 use App\Http\Controllers\Controller;
 use App\Services\ServiceSubCategoryService;
 use App\Traits\ApiResponse;
+use App\Services\ServiceService;
+use App\Services\FaqService;
+use App\Services\TestimonialSectionService;
+use App\Services\ServiceCategoryService;
 
 class ServiceController extends Controller
 {
@@ -91,6 +95,76 @@ class ServiceController extends Controller
 
 
     }
+
+    public function home()
+    {
+
+
+        $hero = app(ServiceService::class)
+
+                ->details();
+
+
+
+        $categories = app(ServiceCategoryService::class)
+
+                ->menu();
+
+
+
+
+
+
+        $testimonials = app(TestimonialSectionService::class)
+
+                ->publicList();
+
+
+
+
+        $faqs = app(FaqService::class)
+
+                ->getBySlug(
+
+                    'services'
+
+                );
+
+
+
+
+        return $this->success(
+
+
+            [
+
+
+                'hero'=>$hero,
+
+
+                'categories'=>$categories,
+
+
+                'testimonials'=>$testimonials,
+
+
+                'faqs'=>$faqs
+
+
+
+            ],
+
+
+
+            'Services page fetched successfully'
+
+
+        );
+
+
+
+    }
+
 
 
 }

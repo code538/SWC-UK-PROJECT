@@ -15,6 +15,7 @@ class ServiceCategoryService
         $data = [
 
             'name' => $request->name,
+            'description'=> $request->description,
 
             'slug' => $request->slug
                 ? Str::slug($request->slug)
@@ -92,6 +93,64 @@ class ServiceCategoryService
 
 
         return $category->delete();
+
+    }
+
+    public function menu()
+    {
+
+
+        return ServiceCategory::
+
+                where(
+
+                    'status',
+
+                    1
+
+                )
+
+
+
+                ->with([
+
+
+                    'subcategories'=>function($q){
+
+
+                        $q->where(
+
+                            'status',
+
+                            1
+
+                        )
+
+                        ->orderBy(
+
+                            'order'
+
+                        );
+
+
+                    }
+
+
+                ])
+
+
+
+                ->orderBy(
+
+                    'order'
+
+                )
+
+
+
+                ->get();
+
+
 
     }
 
