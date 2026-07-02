@@ -44,6 +44,9 @@ use App\Http\Controllers\API\Admin\SvTwelvethSectionController;
 use App\Http\Controllers\API\Admin\TestimonialSectionController;
 use App\Http\Controllers\API\Admin\FaqController;
 use App\Http\Controllers\API\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\API\Admin\HrComplianceFirstSectionController;
+use App\Http\Controllers\API\Admin\HrComplianceSecondSectionController;
+use App\Http\Controllers\API\Admin\HrComplianceThirdSectionController;
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -230,6 +233,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/faq/list', [FaqController::class,'list']);
         Route::get('/faq/{id}', [FaqController::class,'details']);
         Route::delete('/faq/{id}', [FaqController::class,'delete']);
+
+        // HR Compliance First Section
+        Route::post('/hr-compliance-first-section/save', [HrComplianceFirstSectionController::class, 'save']);
+        Route::get('/hr-compliance-first-section/details', [HrComplianceFirstSectionController::class, 'details']);
+        // HR Compliance Second Section
+        Route::post('/hr-compliance-second-section/save', [HrComplianceSecondSectionController::class, 'save']);
+        Route::get('/hr-compliance-second-section/details', [HrComplianceSecondSectionController::class, 'details']);
+        // HR Compliance Third Section
+        Route::post('/hr-compliance-third-section/save', [HrComplianceThirdSectionController::class, 'save']);
+        Route::get('/hr-compliance-third-section/details', [HrComplianceThirdSectionController::class, 'details']);
+
 
 
 
