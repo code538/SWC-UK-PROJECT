@@ -47,7 +47,21 @@ use App\Http\Controllers\API\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\API\Admin\HrComplianceFirstSectionController;
 use App\Http\Controllers\API\Admin\HrComplianceSecondSectionController;
 use App\Http\Controllers\API\Admin\HrComplianceThirdSectionController;
+use App\Http\Controllers\API\Admin\SponsorshipFirstSectionController;
+use App\Http\Controllers\API\Admin\SponsorshipSecondSectionController;
+use App\Http\Controllers\API\Admin\ContactQueryController;
+use App\Http\Controllers\API\Admin\ComplaintController;
 
+//Start tool navbar all route 
+use App\Http\Controllers\API\Admin\RtwFirstSectionController;
+//form route
+use App\Http\Controllers\API\Admin\FormController;
+use App\Http\Controllers\API\Admin\FormQuestionController;
+use App\Http\Controllers\API\Admin\QuestionOptionController;
+use App\Http\Controllers\API\Admin\FormSubmissionController;
+use App\Http\Controllers\API\Admin\SubmissionAnswerController;
+
+//End tool navbar all route 
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -245,7 +259,47 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/hr-compliance-third-section/details', [HrComplianceThirdSectionController::class, 'details']);
 
 
+        // Sponsorship First Section
+        Route::post('/sponsorship-first-section/save', [SponsorshipFirstSectionController::class, 'save']);
+        Route::get('/sponsorship-first-section/details', [SponsorshipFirstSectionController::class, 'details']);
+        // Sponsorship Second Section
+        Route::post('/sponsorship-second-section/save', [SponsorshipSecondSectionController::class, 'save']);
+        Route::get('/sponsorship-second-section/list', [SponsorshipSecondSectionController::class, 'list']);
+        Route::get('/sponsorship-second-section/{id}', [SponsorshipSecondSectionController::class, 'details']);
+        Route::delete('/sponsorship-second-section/{id}', [SponsorshipSecondSectionController::class, 'delete']);
+        
 
+
+        // Contact Query
+        Route::get('/contact-query/list', [ContactQueryController::class, 'list']);
+        Route::get('/contact-query/{id}', [ContactQueryController::class, 'details']);
+        Route::put('/contact-query/{id}', [ContactQueryController::class, 'update']);
+        Route::delete('/contact-query/{id}', [ContactQueryController::class, 'delete']);
+
+        //Complaint
+        Route::get('/complaint/list', [ComplaintController::class,'list']);
+        Route::get('/complaint/{id}', [ComplaintController::class,'details']);
+        Route::put('/complaint/{id}', [ComplaintController::class,'update']);
+        Route::delete('/complaint/{id}', [ComplaintController::class,'delete']);
+
+        //RTW firsrt section
+        Route::post('/rtw-first-section/save', [RtwFirstSectionController::class, 'save']);
+        Route::get('/rtw-first-section/list', [RtwFirstSectionController::class, 'list']);
+
+        Route::post('forms/save', [FormController::class, 'save']);
+        Route::get('forms', [FormController::class, 'list']);
+        Route::get('forms/{id}', [FormController::class, 'details']);
+        Route::post('questions/save', [FormQuestionController::class, 'save']);
+        Route::get('forms/{formId}/questions', [FormQuestionController::class, 'list']);
+        Route::get('questions/{id}', [FormQuestionController::class, 'details']);
+        Route::post('options/save', [QuestionOptionController::class, 'save']);
+        Route::get('questions/{questionId}/options', [QuestionOptionController::class, 'list']);
+        Route::get('options/{id}', [QuestionOptionController::class, 'details']);
+        Route::post('submissions/save', [FormSubmissionController::class, 'save']);
+        Route::get('submissions', [FormSubmissionController::class, 'list']);
+        Route::get('submissions/{id}', [FormSubmissionController::class, 'details']);
+        Route::post('submission-answers/save', [SubmissionAnswerController::class, 'save']);
+        Route::get('submissions/{submissionId}/answers', [SubmissionAnswerController::class, 'list']);
 
     });
 
@@ -268,6 +322,15 @@ Route::get('/service/{slug}', [ServiceController::class,'details']);
 
 // FAQ Public Route
 Route::get('/faq/{slug}', [FaqController::class,'bySlug']);
+
+// Contact Query Public Route
+Route::post('/contact-query', [ContactQueryController::class, 'save']);
+// Complaint Public Route
+Route::post('/complaint', [ComplaintController::class,'save']);
+
+// Tools Public route 
+// RTW
+Route::get('/rtw-first-section/details', [RtwFirstSectionController::class, 'details']);
 
 
 
