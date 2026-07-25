@@ -60,6 +60,9 @@ use App\Http\Controllers\API\Admin\FormQuestionController;
 use App\Http\Controllers\API\Admin\QuestionOptionController;
 use App\Http\Controllers\API\Admin\FormSubmissionController;
 use App\Http\Controllers\API\Admin\SubmissionAnswerController;
+use App\Http\Controllers\API\Public\FormSubmissionController as PublicFormSubmissionController;
+
+
 
 //End tool navbar all route 
 
@@ -288,7 +291,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('forms/save', [FormController::class, 'save']);
         Route::get('forms', [FormController::class, 'list']);
-        Route::get('forms/{id}', [FormController::class, 'details']);
+        
         Route::post('questions/save', [FormQuestionController::class, 'save']);
         Route::get('forms/{formId}/questions', [FormQuestionController::class, 'list']);
         Route::get('questions/{id}', [FormQuestionController::class, 'details']);
@@ -331,6 +334,8 @@ Route::post('/complaint', [ComplaintController::class,'save']);
 // Tools Public route 
 // RTW
 Route::get('/rtw-first-section/details', [RtwFirstSectionController::class, 'details']);
+Route::post('public/forms/submit', [PublicFormSubmissionController::class, 'submit']);
+Route::get('forms/{id}', [FormController::class, 'details']);
 
 
 

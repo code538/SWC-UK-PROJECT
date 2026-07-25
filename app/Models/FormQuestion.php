@@ -15,7 +15,19 @@ class FormQuestion extends Model
 
     protected $casts = ['is_required' => 'boolean'];
 
-    public function form(): BelongsTo { return $this->belongsTo(Form::class); }
-    public function options(): HasMany { return $this->hasMany(QuestionOption::class)->orderBy('option_order'); }
-    public function answers(): HasMany { return $this->hasMany(SubmissionAnswer::class, 'question_id'); }
+    public function form(): BelongsTo 
+    { 
+        return $this->belongsTo(Form::class); 
+    }
+    public function options(): HasMany
+    {
+        return $this->hasMany(
+            QuestionOption::class,
+            'question_id'
+        )->orderBy('option_order');
+    }
+    public function answers(): HasMany 
+    { 
+        return $this->hasMany(SubmissionAnswer::class, 'question_id'); 
+    }
 }
