@@ -29,4 +29,29 @@ class FormQuestionService extends BaseService
             ->orderBy('question_order')
             ->get();
     }
+
+    public function update(Request $request, int $id): FormQuestion
+    {
+        $question = FormQuestion::findOrFail($id);
+
+        $question->update(
+            $request->only([
+                'form_id',
+                'question_text',
+                'helper_text',
+                'question_type',
+                'question_order',
+                'is_required',
+            ])
+        );
+
+        return $question->fresh('options');
+    }
+
+    public function delete(int $id): bool
+    {
+        $question = FormQuestion::findOrFail($id);
+
+        return $question->delete();
+    }
 }

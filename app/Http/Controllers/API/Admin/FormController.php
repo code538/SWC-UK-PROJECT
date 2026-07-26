@@ -36,4 +36,26 @@ class FormController extends Controller
     {
         return $this->success($this->formService->all(), 'Form list fetched successfully');
     }
+
+    public function update(Request $request, int $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'form_type' => 'nullable|string|max:100',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        $form = $this->formService->update(
+            $request,
+            $id
+        );
+
+        return $this->success(
+            $form,
+            'Form updated successfully'
+        );
+    }
+
+
 }

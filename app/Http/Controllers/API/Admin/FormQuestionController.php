@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\FormQuestionService;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class FormQuestionController extends Controller
 {
@@ -20,7 +21,7 @@ class FormQuestionController extends Controller
             'form_id' => 'required|exists:forms,id',
             'question_text' => 'required|string',
             'helper_text' => 'nullable|string',
-            'question_type' => 'required|in:single_choice,multiple_choice,text,email,phone,textarea',
+            'question_type' => 'required|in:single_choice,multiple_choice,text,email,phone,textarea,select',
             'question_order' => 'required|integer|min:1',
             'is_required' => 'nullable|boolean',
         ]);
@@ -37,5 +38,46 @@ class FormQuestionController extends Controller
     public function list(int $formId)
     {
         return $this->success($this->questionService->all($formId), 'Question list fetched successfully');
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $request->validate([
+            'form_id' => 'required|exists:forms,id',
+            'question_text' => 'required|string',
+            'helper_text' => 'nullable|string',
+            'question_type' => 'required|in:single_choice,multiple_choice,text,email,phone,textarea,select',
+
+            'question_order' => [
+                'required',
+                'integer',
+                'min:1',
+                Rule::unique('form_questions', 'question_order')
+                    ->where('form_id', $request->form_id)
+                    ->ignore($id),
+            ],
+
+            'is_required' => 'nullable|boolean',
+        ]);
+
+        $question = $this->questionService->update(
+            $request,
+            $id
+        );
+
+        return $this->success(
+            $question,
+            'Question updated successfully'
+        );
+    }
+
+    public function delete(int $id)
+    {
+        $this->questionService->delete($id);
+
+        return $this->success(
+            [],
+            'Question deleted successfully'
+        );
     }
 }

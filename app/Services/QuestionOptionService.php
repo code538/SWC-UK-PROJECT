@@ -25,4 +25,27 @@ class QuestionOptionService extends BaseService
             ->orderBy('option_order')
             ->get();
     }
+
+    public function update(Request $request, int $id): QuestionOption
+    {
+        $option = QuestionOption::findOrFail($id);
+
+        $option->update(
+            $request->only([
+                'question_id',
+                'option_text',
+                'option_order',
+                'score_value',
+            ])
+        );
+
+        return $option->fresh();
+    }
+
+    public function delete(int $id): bool
+    {
+        $option = QuestionOption::findOrFail($id);
+
+        return $option->delete();
+    }
 }

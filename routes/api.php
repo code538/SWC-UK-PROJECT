@@ -291,13 +291,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('forms/save', [FormController::class, 'save']);
         Route::get('forms', [FormController::class, 'list']);
+        Route::put('forms/{id}', [FormController::class, 'update']);
         
         Route::post('questions/save', [FormQuestionController::class, 'save']);
         Route::get('forms/{formId}/questions', [FormQuestionController::class, 'list']);
         Route::get('questions/{id}', [FormQuestionController::class, 'details']);
+        Route::put('questions/{id}', [FormQuestionController::class, 'update']);
+        Route::delete('questions/{id}', [FormQuestionController::class, 'delete']);
+
         Route::post('options/save', [QuestionOptionController::class, 'save']);
         Route::get('questions/{questionId}/options', [QuestionOptionController::class, 'list']);
         Route::get('options/{id}', [QuestionOptionController::class, 'details']);
+        Route::put('options/{id}', [QuestionOptionController::class, 'update']);
+        Route::delete('options/{id}', [QuestionOptionController::class, 'delete']);
+
         Route::post('submissions/save', [FormSubmissionController::class, 'save']);
         Route::get('submissions', [FormSubmissionController::class, 'list']);
         Route::get('submissions/{id}', [FormSubmissionController::class, 'details']);

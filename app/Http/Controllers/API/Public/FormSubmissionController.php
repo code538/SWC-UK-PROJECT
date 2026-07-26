@@ -17,7 +17,7 @@ class FormSubmissionController extends Controller
     }
 
     public function submit(Request $request)
-    {
+    {   
         $request->validate([
             'form_id' => 'required|exists:forms,id',
 

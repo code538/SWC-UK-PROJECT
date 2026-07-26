@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Form extends Model
 {
-    protected $fillable = ['name', 'description', 'form_type', 'is_active'];
+    protected $fillable = [
+        'name',
+        'unique_id',
+        'description',
+        'form_type',
+        'is_active',
+    ];
 
     protected $casts = ['is_active' => 'boolean'];
 
