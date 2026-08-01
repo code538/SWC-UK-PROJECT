@@ -62,6 +62,18 @@ use App\Http\Controllers\API\Admin\FormSubmissionController;
 use App\Http\Controllers\API\Admin\SubmissionAnswerController;
 use App\Http\Controllers\API\Public\FormSubmissionController as PublicFormSubmissionController;
 
+//this all are Uk Salary Calculator Route
+use App\Http\Controllers\API\Admin\Calculator\CountryController;
+use App\Http\Controllers\API\Admin\Calculator\RegionController;
+use App\Http\Controllers\API\Admin\Calculator\TaxYearController;
+use App\Http\Controllers\API\Admin\Calculator\TaxCodeController;
+use App\Http\Controllers\API\Admin\Calculator\NiCategoryController;
+use App\Http\Controllers\API\Admin\Calculator\NiBandController;
+use App\Http\Controllers\API\Admin\Calculator\StudentLoanPlanController;
+use App\Http\Controllers\API\Admin\Calculator\PensionOptionController;
+use App\Http\Controllers\API\Public\SalaryCalculatorController;
+
+
 
 
 //End tool navbar all route 
@@ -75,6 +87,59 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    
+
+    Route::prefix('admin/calculator')->group(function () {
+        // Country route
+        Route::post('/country/save', [CountryController::class, 'save']);
+        Route::get('/country/list', [CountryController::class, 'list']);
+        Route::get('/country/details/{id}', [CountryController::class, 'details']);
+        Route::delete('/country/delete/{id}', [CountryController::class, 'delete']);
+
+        // Region Route
+        Route::post('/region/save', [RegionController::class, 'save']);
+        Route::get('/region/list', [RegionController::class, 'list']);
+        Route::get('/region/details/{id}', [RegionController::class, 'details']);
+        Route::delete('/region/delete/{id}', [RegionController::class, 'delete']);
+        
+        //Tax Year Route 
+        Route::post('/tax-year/save', [TaxYearController::class, 'save']);
+        Route::get('/tax-year/list', [TaxYearController::class, 'list']);
+        Route::get('/tax-year/details/{id}', [TaxYearController::class, 'details']);
+        Route::delete('/tax-year/delete/{id}', [TaxYearController::class, 'delete']);
+
+        //Tax Code Route
+        Route::post('/tax-code/save', [TaxCodeController::class, 'save']);
+        Route::get('/tax-code/list', [TaxCodeController::class, 'list']);
+        Route::get('/tax-code/details/{id}', [TaxCodeController::class, 'details']);
+        Route::delete('/tax-code/delete/{id}', [TaxCodeController::class, 'delete']);
+
+        // Ni Category Controller
+        Route::post('/ni-category/save', [NiCategoryController::class, 'save']);
+        Route::get('/ni-category/list', [NiCategoryController::class, 'list']);
+        Route::get('/ni-category/details/{id}', [NiCategoryController::class, 'details']);
+        Route::delete('/ni-category/delete/{id}', [NiCategoryController::class, 'delete']);
+
+        // Ni Band Controller
+        Route::post('/ni-band/save', [NiBandController::class, 'save']);
+        Route::get('/ni-band/list', [NiBandController::class, 'list']);
+        Route::get('/ni-band/details/{id}', [NiBandController::class, 'details']);
+        Route::delete('/ni-band/delete/{id}', [NiBandController::class, 'delete']);
+
+        // Student Loan Plan Route
+        Route::post('/student-loan-plan/save', [StudentLoanPlanController::class, 'save']);
+        Route::get('/student-loan-plan/list', [StudentLoanPlanController::class, 'list']);
+        Route::get('/student-loan-plan/details/{id}', [StudentLoanPlanController::class, 'details']);
+        Route::delete('/student-loan-plan/delete/{id}', [StudentLoanPlanController::class, 'delete']);
+
+        //
+        Route::post('/pension-option/save', [PensionOptionController::class,'save']);
+        Route::get('/pension-option/list', [PensionOptionController::class,'list']);
+        Route::get('/pension-option/details/{id}', [PensionOptionController::class,'details']);
+        Route::delete('/pension-option/delete/{id}', [PensionOptionController::class,'delete']);
+
+    });
 
    
 
@@ -343,6 +408,14 @@ Route::post('/complaint', [ComplaintController::class,'save']);
 Route::get('/rtw-first-section/details', [RtwFirstSectionController::class, 'details']);
 Route::post('public/forms/submit', [PublicFormSubmissionController::class, 'submit']);
 Route::get('forms/{id}', [FormController::class, 'details']);
+
+Route::prefix('calculator')->group(function () {
+    Route::post(
+        '/calculate',
+        [SalaryCalculatorController::class, 'calculate']
+    );
+
+});
 
 
 
