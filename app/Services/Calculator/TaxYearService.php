@@ -3,37 +3,62 @@
 namespace App\Services\Calculator;
 
 use App\Models\Calculator\TaxYear;
+use App\Services\BaseService;
+use Illuminate\Http\Request;
 
-class TaxYearService
+class TaxYearService extends BaseService
 {
+    /**
+     * Create or Update Tax Year
+     */
+    public function save(Request $request)
+    {
+        return TaxYear::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'region_id'  => $request->region_id,
+                'name'       => $request->name,
+                'start_date' => $request->start_date,
+                'end_date'   => $request->end_date,
+                'is_active'  => $request->boolean('is_active'),
+            ]
+        );
+    }
+
+    /**
+     * Tax Year Details
+     */
+    public function details(int $id)
+    {
+        return TaxYear::with('region')
+            ->find($id);
+    }
+
+    /**
+     * Tax Year List
+     */
     public function all()
     {
-        return TaxYear::with('region')->latest()->get();
+        return TaxYear::with('region')
+            ->latest()
+            ->get();
     }
 
-    public function find(int $id)
-    {
-        return TaxYear::with('region')->findOrFail($id);
-    }
-
-    public function create(array $data)
-    {
-        return TaxYear::create($data);
-    }
-
-    public function update(int $id, array $data)
-    {
-        $taxYear = $this->find($id);
-        $taxYear->update($data);
-
-        return $taxYear;
-    }
-
+    /**
+     * Delete Tax Year
+     */
     public function delete(int $id): bool
     {
-        return $this->find($id)->delete();
+        $taxYear = TaxYear::findOrFail($id);
+
+        return $taxYear->delete();
     }
 
+    /**
+     * Get Active Tax Year By Region
+     */
     public function activeByRegion(int $regionId)
     {
         return TaxYear::where('region_id', $regionId)

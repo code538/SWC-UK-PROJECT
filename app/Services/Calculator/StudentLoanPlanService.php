@@ -3,34 +3,56 @@
 namespace App\Services\Calculator;
 
 use App\Models\Calculator\StudentLoanPlan;
+use App\Services\BaseService;
+use Illuminate\Http\Request;
 
-class StudentLoanPlanService
+class StudentLoanPlanService extends BaseService
 {
+    /**
+     * Create or Update Student Loan Plan
+     */
+    public function save(Request $request)
+    {
+        return StudentLoanPlan::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'tax_year_id' => $request->tax_year_id,
+                'name'        => $request->name,
+                'threshold'   => $request->threshold,
+                'rate'        => $request->rate,
+                'is_active'   => $request->boolean('is_active'),
+            ]
+        );
+    }
+
+    /**
+     * Student Loan Plan Details
+     */
+    public function details(int $id)
+    {
+        return StudentLoanPlan::with('taxYear')
+            ->find($id);
+    }
+
+    /**
+     * Student Loan Plan List
+     */
     public function all()
     {
-        return StudentLoanPlan::with('taxYear')->latest()->get();
+        return StudentLoanPlan::with('taxYear')
+            ->latest()
+            ->get();
     }
 
-    public function find(int $id)
-    {
-        return StudentLoanPlan::with('taxYear')->findOrFail($id);
-    }
-
-    public function create(array $data)
-    {
-        return StudentLoanPlan::create($data);
-    }
-
-    public function update(int $id, array $data)
-    {
-        $plan = $this->find($id);
-        $plan->update($data);
-
-        return $plan;
-    }
-
+    /**
+     * Delete Student Loan Plan
+     */
     public function delete(int $id): bool
     {
-        return $this->find($id)->delete();
+        $plan = StudentLoanPlan::findOrFail($id);
+
+        return $plan->delete();
     }
 }

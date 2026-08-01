@@ -3,34 +3,54 @@
 namespace App\Services\Calculator;
 
 use App\Models\Calculator\PensionOption;
+use App\Services\BaseService;
+use Illuminate\Http\Request;
 
-class PensionOptionService
+class PensionOptionService extends BaseService
 {
+    /**
+     * Create or Update Pension Option
+     */
+    public function save(Request $request)
+    {
+        return PensionOption::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'name'            => $request->name,
+                'code'            => strtoupper($request->code),
+                'employee_rate'   => $request->employee_rate,
+                'employer_rate'   => $request->employer_rate,
+                'is_percentage'   => $request->boolean('is_percentage'),
+                'is_active'       => $request->boolean('is_active'),
+            ]
+        );
+    }
+
+    /**
+     * Pension Option Details
+     */
+    public function details(int $id)
+    {
+        return PensionOption::find($id);
+    }
+
+    /**
+     * Pension Option List
+     */
     public function all()
     {
         return PensionOption::latest()->get();
     }
 
-    public function find(int $id)
-    {
-        return PensionOption::findOrFail($id);
-    }
-
-    public function create(array $data)
-    {
-        return PensionOption::create($data);
-    }
-
-    public function update(int $id, array $data)
-    {
-        $option = $this->find($id);
-        $option->update($data);
-
-        return $option;
-    }
-
+    /**
+     * Delete Pension Option
+     */
     public function delete(int $id): bool
     {
-        return $this->find($id)->delete();
+        $option = PensionOption::findOrFail($id);
+
+        return $option->delete();
     }
 }
