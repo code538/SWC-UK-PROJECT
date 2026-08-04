@@ -415,6 +415,12 @@ Route::prefix('calculator')->group(function () {
         [SalaryCalculatorController::class, 'calculate']
     );
 
+    Route::get('/region/list', [RegionController::class, 'list']);
+    Route::get('/tax-code/list', [TaxCodeController::class, 'list']);
+    Route::get('/ni-category/list', [NiCategoryController::class, 'list']);
+    Route::get('/student-loan-plan/list', [StudentLoanPlanController::class, 'list']);
+    Route::get('/pension-option/list', [PensionOptionController::class,'list']);
+
 });
 
 
