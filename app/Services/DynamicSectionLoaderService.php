@@ -8,6 +8,7 @@ class DynamicSectionLoaderService
 {
 
 
+
     // public function loadSections($subcategoryId)
     // {
 
@@ -18,26 +19,12 @@ class DynamicSectionLoaderService
     //                     $subcategoryId
 
     //                 )
-
-    //                 ->where(
-
-    //                     'status',
-
-    //                     1
-
-    //                 )
-
-    //                 ->orderBy(
-
-    //                     'order_by'
-
-    //                 )
-
+    //                 ->where('status',1)
+    //                 ->orderBy('order_by')
     //                 ->get();
 
-    //     //dd($sections);
-    //     $response = [];
 
+    //     $response=[];
 
 
 
@@ -47,11 +34,11 @@ class DynamicSectionLoaderService
 
     //         $serviceClass = config(
 
-    //             'service-sections.'.
+    //             'service-sections.'
 
-    //             $section->section_name.
+    //             .$section->section_name
 
-    //             '.service'
+    //             .'.service'
 
     //         );
 
@@ -73,9 +60,13 @@ class DynamicSectionLoaderService
 
 
 
+    //         // ******** THIS IS IMPORTANT ********
 
-    //         $data = $service->details();
+    //         $data = $service->details(
 
+    //                     $section->section_id
+
+    //                 );
 
 
 
@@ -83,19 +74,20 @@ class DynamicSectionLoaderService
     //         $response[]=[
 
 
-    //             'section_name'=>
+    //             'section_name'
 
-    //                     $section->section_name,
-
-
-    //             'section_id'=>
-
-    //                     $section->section_id,
+    //                     =>$section->section_name,
 
 
-    //             'data'=>
+    //             'section_id'
 
-    //                     $data
+    //                     =>$section->section_id,
+
+
+    //             'data'
+
+    //                     =>$data
+
 
 
     //         ];
@@ -106,106 +98,57 @@ class DynamicSectionLoaderService
 
 
 
+
     //     return $response;
+
 
 
     // }
 
+
     public function loadSections($subcategoryId)
     {
-
         $sections = ServiceSubCategorySection::where(
+                'service_sub_category_id',
+                $subcategoryId
+            )
+            ->where('status', 1)
+            ->orderBy('order_by')
+            ->get();
 
-                        'service_sub_category_id',
+        $response = [];
 
-                        $subcategoryId
+        foreach ($sections as $section) {
 
-                    )
-                    ->where('status',1)
-                    ->orderBy('order_by')
-                    ->get();
-
-
-        $response=[];
-
-
-
-        foreach($sections as $section)
-        {
-
-
-            $serviceClass = config(
-
-                'service-sections.'
-
-                .$section->section_name
-
-                .'.service'
-
+            $config = config(
+                'service-sections.' . $section->section_name
             );
 
-
-
-            if(!$serviceClass){
-
+            if (!$config) {
                 continue;
-
             }
 
+            $serviceClass = $config['service'] ?? null;
 
+            if (!$serviceClass) {
+                continue;
+            }
 
-            $service = app(
+            $service = app($serviceClass);
 
-                $serviceClass
+            $data = $service->details($section->section_id);
 
-            );
+            $response[] = [
+                'section_key' => $config['key']
+                    ?? $section->section_name,
 
+                'section_id' => $section->section_id,
 
-
-            // ******** THIS IS IMPORTANT ********
-
-            $data = $service->details(
-
-                        $section->section_id
-
-                    );
-
-
-
-
-            $response[]=[
-
-
-                'section_name'
-
-                        =>$section->section_name,
-
-
-                'section_id'
-
-                        =>$section->section_id,
-
-
-                'data'
-
-                        =>$data
-
-
-
+                'data' => $data,
             ];
-
-
-
         }
 
-
-
-
         return $response;
-
-
-
     }
-
 
 }
