@@ -210,6 +210,19 @@ class ServiceSubCategorySectionController extends Controller
 
     }
 
+    public function sectionList($section_name)
+    {
+        $sectionList = $this->serviceSubCategorySectionService->sectionList($section_name);
+
+        return $this->success(
+
+            $sectionList,
+
+            'Section list fetched successfully'
+
+        );
+    }
+
     
 
   

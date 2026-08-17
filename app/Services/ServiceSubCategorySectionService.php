@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\ServiceSubCategorySection;
+use DB;
 use Illuminate\Http\Request;
 
 class ServiceSubCategorySectionService
@@ -117,6 +118,20 @@ class ServiceSubCategorySectionService
         return $section->delete();
 
 
+    }
+
+    public function sectionList($section_name)
+    {
+        $section = $section_name.'_sections';
+        return DB::table($section)
+            ->where('status', 1)
+            ->select(
+                'id',
+                'batch',
+                'title',
+                'highlighted_title'
+            )
+            ->get();
     }
 
 

@@ -245,6 +245,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/service-sub-category-section/list', [ServiceSubCategorySectionController::class,'list']);
         Route::get('/service-sub-category-section/{id}', [ServiceSubCategorySectionController::class,'details']);
         Route::delete('/service-sub-category-section/{id}', [ServiceSubCategorySectionController::class,'delete']);
+
+        Route::get('/service-section-list/{section_name}', [ServiceSubCategorySectionController::class,'sectionList']);
         // Service Details Page First Section
         Route::post('/sv-first-section/save', [SvFirstSectionController::class,'save']);
         Route::get('/sv-first-section/list', [SvFirstSectionController::class,'list']);
@@ -410,11 +412,7 @@ Route::post('public/forms/submit', [PublicFormSubmissionController::class, 'subm
 Route::get('forms/{id}', [FormController::class, 'details']);
 
 Route::prefix('calculator')->group(function () {
-    Route::post(
-        '/calculate',
-        [SalaryCalculatorController::class, 'calculate']
-    );
-
+    Route::post('/calculate', [SalaryCalculatorController::class, 'calculate']);
     Route::get('/region/list', [RegionController::class, 'list']);
     Route::get('/tax-code/list', [TaxCodeController::class, 'list']);
     Route::get('/ni-category/list', [NiCategoryController::class, 'list']);

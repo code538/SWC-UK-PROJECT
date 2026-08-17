@@ -39,6 +39,20 @@ class SvFirstSectionController extends Controller
     public function save(Request $request)
     {
 
+            foreach (['feature', 'f_card', 's_card', 't_card'] as $field) {
+                if ($request->filled($field) && is_string($request->$field)) {
+                    $request->merge([
+                        $field => json_decode($request->$field, true)
+                    ]);
+                }
+            }
+            //dd($request->all());
+        // dd($request->merge([
+        //     'feature' => json_decode($request->feature, true),
+        //     'f_card' => json_decode($request->f_card, true),
+        //     's_card' => json_decode($request->s_card, true),
+        //     't_card' => json_decode($request->t_card, true),
+        // ]));
 
         $request->validate([
 
