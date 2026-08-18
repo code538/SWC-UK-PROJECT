@@ -13,11 +13,8 @@ return new class extends Migration
 
             $table->id();
 
-
-            /*
-            BENEFITS
-            */
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
 
 

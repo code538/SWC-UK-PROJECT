@@ -15,6 +15,7 @@ return new class extends Migration
 
             // OUR IMPACT
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             // Trusted By Businesses
             $table->string('title')->nullable();

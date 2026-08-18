@@ -13,6 +13,7 @@ return new class extends Migration
         Schema::create('sv_eighth_sections', function (Blueprint $table) {
             $table->id();
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             $table->string('title')->nullable();
             $table->string('highlighted_title')->nullable();

@@ -14,6 +14,7 @@ return new class extends Migration
 
             // FEATURES
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             // Powerful Features Built
             $table->string('title')->nullable();

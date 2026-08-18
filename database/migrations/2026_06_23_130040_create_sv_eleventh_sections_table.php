@@ -16,10 +16,9 @@ return new class extends Migration
             WHY CHOOSE US
             */
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
+
             $table->string('title')->nullable();
-            /*
-            SWC Global
-            */
             $table->string('highlighted_title')->nullable();
             $table->longText('description')->nullable();
             /*

@@ -14,8 +14,9 @@ return new class extends Migration
             $table->id();
 
             // Batch
-            $table->string('batch')->nullable();
 
+            $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             // Heading
             $table->string('title')->nullable();

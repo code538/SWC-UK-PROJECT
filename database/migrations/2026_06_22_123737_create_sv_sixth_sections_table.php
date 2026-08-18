@@ -12,10 +12,8 @@ return new class extends Migration
 
             $table->id();
 
-            /*
-            OUR SERVICES
-            */
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
 
             /*

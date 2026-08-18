@@ -10,6 +10,7 @@ class SvTenthSection extends Model
     protected $fillable = [
 
         'batch',
+        'identifier',
 
         'title',
         'highlighted_title',

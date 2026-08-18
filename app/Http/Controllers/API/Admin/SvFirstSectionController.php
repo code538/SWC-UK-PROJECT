@@ -46,13 +46,7 @@ class SvFirstSectionController extends Controller
                     ]);
                 }
             }
-            //dd($request->all());
-        // dd($request->merge([
-        //     'feature' => json_decode($request->feature, true),
-        //     'f_card' => json_decode($request->f_card, true),
-        //     's_card' => json_decode($request->s_card, true),
-        //     't_card' => json_decode($request->t_card, true),
-        // ]));
+        
 
         $request->validate([
 

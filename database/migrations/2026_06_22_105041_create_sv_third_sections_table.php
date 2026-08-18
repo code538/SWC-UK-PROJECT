@@ -14,6 +14,7 @@ return new class extends Migration
 
             // Small Batch Title
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             // Main Heading
             $table->string('title')->nullable();

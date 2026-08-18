@@ -13,6 +13,7 @@ return new class extends Migration
 
             $table->id();
             $table->string('batch')->nullable();
+            $table->string('identifier')->nullable();
 
             $table->string('title')->nullable();
             $table->string('highlighted_title')->nullable();
