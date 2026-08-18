@@ -127,6 +127,7 @@ class ServiceSubCategorySectionService
             ->where('status', 1)
             ->select(
                 'id',
+                'identifier',
                 'batch',
                 'title',
                 'highlighted_title'
