@@ -63,6 +63,10 @@ class SvThirdSectionController extends Controller
 
             'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
 
+            'image_alt'=>
+
+                    'nullable|string',
+
 
 
             'description'=>

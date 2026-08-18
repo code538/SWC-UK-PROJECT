@@ -27,6 +27,12 @@ return new class extends Migration
             $table->string('title_meta')->nullable();
             $table->text('desc_meta')->nullable();
 
+            $table->string('web_image')->nullable();
+
+            $table->string('mobile_image')->nullable();
+
+            $table->string('image_alt')->nullable();
+
 
             // Feature Cards
             $table->string('card1_title')->nullable();
