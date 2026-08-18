@@ -19,6 +19,10 @@ class SvThirdSection extends Model
         'title_meta',
         'desc_meta',
 
+        'web_image',
+        'mobile_image',
+        'image_alt',
+
         'card1_title',
         'card2_title',
         'card3_title',
