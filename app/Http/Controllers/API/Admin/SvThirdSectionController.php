@@ -54,6 +54,15 @@ class SvThirdSectionController extends Controller
 
                     'nullable|string',
 
+            'web_image'=>
+                    'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+
+
+
+            'mobile_image'=>
+
+            'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+
 
 
             'description'=>

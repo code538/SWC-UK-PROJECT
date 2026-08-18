@@ -9,99 +9,150 @@ class SvFirstSectionService extends BaseService
 {
 
 
+    // public function save(Request $request)
+    // {
+
+    //     $section = SvFirstSection::find(
+    //         $request->id
+    //     );
+
+
+    //     $data = $request->except([
+
+    //         'web_image',
+    //         'mobile_image'
+
+    //     ]);
+
+
+    //     if($request->hasFile('web_image'))
+    //     {
+
+
+    //         if($section?->web_image)
+    //         {
+
+    //             $this->deleteFile(
+
+    //                 $section->web_image
+
+    //             );
+
+    //         }
+
+
+
+    //         $data['web_image'] = $this->uploadFile(
+
+    //             $request->file('web_image'),
+
+    //             'sv-first-section'
+
+    //         );
+
+
+
+    //     }
+
+
+
+
+    //     if($request->hasFile('mobile_image'))
+    //     {
+
+
+    //         if($section?->mobile_image)
+    //         {
+
+    //             $this->deleteFile(
+
+    //                 $section->mobile_image
+
+    //             );
+
+    //         }
+
+
+
+    //         $data['mobile_image'] = $this->uploadFile(
+
+    //             $request->file('mobile_image'),
+
+    //             'sv-first-section'
+
+    //         );
+
+
+
+    //     }
+
+
+
+
+    //     return SvFirstSection::updateOrCreate(
+
+    //         [
+
+    //             'id'=>$request->id
+
+    //         ],
+
+    //         $data
+
+    //     );
+
+
+    // }
+
     public function save(Request $request)
     {
-
-        $section = SvFirstSection::find(
+        $section = SvThirdSection::find(
             $request->id
         );
 
-
         $data = $request->except([
-
             'web_image',
             'mobile_image'
-
         ]);
 
+        // Web Image
+        if ($request->hasFile('web_image')) {
 
-        if($request->hasFile('web_image'))
-        {
-
-
-            if($section?->web_image)
-            {
+            if ($section?->web_image) {
 
                 $this->deleteFile(
-
                     $section->web_image
-
                 );
-
             }
-
-
 
             $data['web_image'] = $this->uploadFile(
-
                 $request->file('web_image'),
-
-                'sv-first-section'
-
+                'sv-third-section'
             );
-
-
-
         }
 
+        // Mobile Image
+        if ($request->hasFile('mobile_image')) {
 
-
-
-        if($request->hasFile('mobile_image'))
-        {
-
-
-            if($section?->mobile_image)
-            {
+            if ($section?->mobile_image) {
 
                 $this->deleteFile(
-
                     $section->mobile_image
-
                 );
-
             }
 
-
-
             $data['mobile_image'] = $this->uploadFile(
-
                 $request->file('mobile_image'),
-
-                'sv-first-section'
-
+                'sv-third-section'
             );
-
-
-
         }
 
-
-
-
-        return SvFirstSection::updateOrCreate(
-
+        return SvThirdSection::updateOrCreate(
             [
-
-                'id'=>$request->id
-
+                'id' => $request->id
             ],
-
             $data
-
         );
-
-
     }
 
 
