@@ -96,29 +96,10 @@ class SvSecondSectionController extends Controller
 
         ]);
 
+        $section = $this->svSecondSectionService
+            ->save($request);
 
-
-
-        $section =
-
-        $this->svSecondSectionService
-
-            ->save(
-
-                $request
-
-            );
-
-
-
-
-        return $this->success(
-
-            $section,
-
-            'Saved successfully'
-
-        );
+        return $this->success($section, 'Saved successfully');
 
 
     }

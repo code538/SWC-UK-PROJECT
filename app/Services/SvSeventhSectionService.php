@@ -25,81 +25,22 @@ class SvSeventhSectionService extends BaseService
 
 
                 'batch'=>$request->batch,
-
-
+                'identifier'=>$request->identifier,
 
                 'title'=>$request->title,
+                'highlighted_title'=> $request->highlighted_title,
 
+                'description'=>  $request->description,
+                'title_meta'=> $request->title_meta,
+                'desc_meta'=> $request->desc_meta,
 
+                'steps'=> $request->steps,
+                'title2'=> $request->title2,
+                'short_desc'=> $request->short_desc,
 
-                'highlighted_title'=>
-
-                    $request->highlighted_title,
-
-
-
-
-                'description'=>
-
-                    $request->description,
-
-
-
-
-                'title_meta'=>
-
-                    $request->title_meta,
-
-
-
-
-                'desc_meta'=>
-
-                    $request->desc_meta,
-
-
-
-
-
-                'steps'=>
-
-                    $request->steps,
-
-
-
-
-
-                'title2'=>
-
-                    $request->title2,
-
-
-
-                'short_desc'=>
-
-                    $request->short_desc,
-
-
-
-
-                'button_name'=>
-
-                    $request->button_name,
-
-
-
-
-                'button_url'=>
-
-                    $request->button_url,
-
-
-
-
-
-                'status'=>
-
-                    $request->status ?? 1
+                'button_name'=> $request->button_name,
+                'button_url'=> $request->button_url,
+                'status'=> $request->status ?? 1
 
 
 

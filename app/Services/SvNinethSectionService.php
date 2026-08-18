@@ -25,6 +25,7 @@ class SvNinethSectionService extends BaseService
 
 
                 'batch'=>$request->batch,
+                'identifier'=>$request->identifier,
 
 
                 'title'=>$request->title,

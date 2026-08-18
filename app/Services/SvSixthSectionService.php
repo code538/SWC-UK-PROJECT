@@ -23,6 +23,7 @@ class SvSixthSectionService extends BaseService
             [
 
                 'batch'=>$request->batch,
+                'identifier'=>$request->identifier,
 
 
                 'title'=>$request->title,
